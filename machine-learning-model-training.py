@@ -1,12 +1,14 @@
 # imports
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.pipeline import make_pipeline
-from sklearn.multiclass import OneVsRestClassifier
-from sklearn.svm import SVC
-from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+import nltk
+from nltk import word_tokenize
+import pickle
+
+nltk.download('punkt')
 
 tweets_data_path = "preprocessed_tweets.csv"
 df = pd.read_csv(tweets_data_path)
@@ -16,22 +18,26 @@ lables = df[df.columns[4:]].values
 print(features[:5])
 print(lables[:5])
 X_train, X_test, y_train, y_test = train_test_split(
-    features, lables, random_state=42, test_size=0.15, shuffle=True)
+    features, lables, random_state=42, test_size=0.1, shuffle=True)
 print("[INFO] Samples from the dataset")
 print(X_train[:5])
 print(y_train[:5])
 
-vectorizer = TfidfVectorizer()
+vocab_size = 25000
+vectorizer = TfidfVectorizer(
+    max_features=vocab_size, tokenizer=word_tokenize, analyzer='word')
 X = vectorizer.fit_transform(X_train)
 X_test = vectorizer.transform(X_test)
 print(X.shape)
 print(X_test.shape)
 
-# Creating the SVM model
-model = OneVsRestClassifier(SVC())
-
+# Creating the Random Forest Classifier model
+random_forest = RandomForestClassifier(criterion='gini',
+                                       n_estimators=15,
+                                       random_state=1,
+                                       verbose=2)
 # Fitting the model with training data
-model.fit(X, y_train)
+model = random_forest.fit(X, y_train)
 
 # Making a prediction on the test set
 prediction = model.predict(X_test)
@@ -40,3 +46,6 @@ prediction = model.predict(X_test)
 print(f"Test Set Accuracy: {accuracy_score(y_test, prediction) * 100} %\n\n")
 print(
     f"Classification Report : \n\n{classification_report(y_test, prediction)}")
+
+pickle.dump(model, open("models/Rf_model.sav", 'wb'))
+print("Model saved")
