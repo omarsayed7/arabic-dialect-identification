@@ -1,1 +1,1 @@
-web: gunicorn model_deploy:app
+web: gunicorn --bind 0.0.0.0:5000 model_deploy:app
