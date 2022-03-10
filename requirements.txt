@@ -5,5 +5,5 @@ PyArabic
 nltk
 textblob
 scikit-learn
-tensorflow
+tensorflow-cpu
 pickleshare
