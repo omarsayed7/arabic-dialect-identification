@@ -12,7 +12,7 @@ df = pd.read_csv(tweets_data_path)
 print(df.info())
 
 features = df.tweets.values.astype(str)
-lables = df[df.columns[4:]].values
+lables = pd.get_dummies(df['dialect']).values  # One-hot encoding the lables
 
 # Fit the tokenizer
 # Either pre-define vocab size
@@ -36,14 +36,14 @@ x_test = vectorizer.transform(X_test).toarray()
 
 model = Sequential()
 model.add(layers.Dense(128, activation='relu', input_shape=(vocab_sz,)))
-model.add(layers.Dropout(0.8))
+model.add(layers.Dropout(0.6))
 model.add(layers.Dense(64, activation='relu'))
-model.add(layers.Dropout(0.8))
+model.add(layers.Dropout(0.6))
 model.add(layers.Dense(32, activation='relu'))
-model.add(layers.Dropout(0.8))
+model.add(layers.Dropout(0.6))
 model.add(layers.Dense(18, activation='softmax'))
 
-model.compile(optimizer='adam',
+model.compile(optimizer='rmsprop',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
@@ -51,7 +51,7 @@ callback = callbacks.EarlyStopping(monitor='loss', patience=3)
 
 history = model.fit(x_train,
                     y_train,
-                    epochs=20,
+                    epochs=100,
                     batch_size=512,
                     validation_data=(x_val, y_val),
                     callbacks=[callback])

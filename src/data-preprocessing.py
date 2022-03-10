@@ -5,6 +5,7 @@ import pyarabic.araby as araby
 import nltk
 from nltk.corpus import stopwords
 import textblob
+from sklearn import preprocessing
 
 arabic_punctuations = '''`÷×؛<>_()*&^%][ـ،/:"؟.,'{}~¦+|!”…“–ـ'''
 english_punctuations = string.punctuation
@@ -98,9 +99,23 @@ def text_preprocessing(dataFrame, text_column):
 
     print("[INFO] Finished pre-processing on the text")
     print("[INFO] Last step is encoding the class lables")
+
     # Encoding the lables (18 classes)
-    dataFrame = pd.get_dummies(dataFrame, columns=['dialect'])
+    encoding = preprocessing.LabelEncoder()
+
+    # using fit transform on the data
+    y = encoding.fit_transform(dataFrame.dialect.values)
+
+    # replace dialec column with the encoded
+    dataFrame['dialect'] = y
+
     return dataFrame
+
+
+def inference_cleaning(text):
+    text = text_cleaning(text)
+    text = text_normalization(text)
+    return text
 
 
 if __name__ == '__main__':
@@ -110,4 +125,4 @@ if __name__ == '__main__':
     processed_dataFrame = text_preprocessing(df, 'tweets')
     print(processed_dataFrame.info())
     # Save preprocessed dataframe to CSV
-    processed_dataFrame.to_csv('preprocessed_tweets.csv')  
+    processed_dataFrame.to_csv('preprocessed_tweets.csv')

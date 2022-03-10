@@ -1,3 +1,3 @@
-preprocessed_tweets.csv
-tweets_dataset.csv
-models
+src/preprocessed_tweets.csv
+src/tweets_dataset.csv
+src/models
