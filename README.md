@@ -2,7 +2,7 @@
 
 ## Introduction
 
-    Many countries speak Arabic; however, each country has its own dialect, the aim of this task is to build a model that predicts the dialect given the text.
+Many countries speak Arabic; however, each country has its own dialect, the aim of this task is to build a model that predicts the dialect given the text.
 
 ## Usage
 
@@ -22,7 +22,9 @@
 
 ##### Machine learning model training
 
-    python machine-learning-model-training.py
+    python machine-learning-model-training.py [-m [model_type]
+
+    --model_type                 Choose the model you want to train from SVM, RF, and SGD
 
 ##### Simple neural network(Dense layers) model training
 
