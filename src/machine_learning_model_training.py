@@ -43,8 +43,8 @@ def model_training(model_type, X_train, y_train):
 
     if model_type == 'SVM':
         print("[INFO] Starting training with Support Vector Machines Classifier")
-        model = Pipeline([('tfidf', TfidfVectorizer()),
-                          ('svm', SVC(gamma='auto', verbose=2))])
+        model = Pipeline([('tfidf', TfidfVectorizer(max_features=500)),
+                          ('svm', SVC(verbose=2))])
         model.fit(X_train, y_train)
         return model
     else:

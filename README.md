@@ -12,24 +12,31 @@ Many countries speak Arabic; however, each country has its own dialect, the aim 
 
 #### Data fetching
 
-    python data-fetching.py
+    python data_fetching.py
 
 #### Data pre-processing
 
-    python data-preprocessing.py
+    python data_preprocessing.py
 
 #### Machine learning and deep learning model training
 
 ##### Machine learning model training
 
-    python machine-learning-model-training.py [-m [model_type]
+    python machine_learning_model_training.py [-m [model_type]]
 
     --model_type                 Choose the model you want to train from SVM, RF, and SGD
 
 ##### Simple neural network(Dense layers) model training
 
-    python dense-layers-model-training.py
+    python dense_layers_model_training.py
 
-##### Bi-LSTM neural network model training
+##### LSTM neural network model training
 
-    python bilstm-model-training.py
+    python lstm_model_training.py
+
+#### Inference the trained models
+
+    python text_inference.py [-m [model_type] -t [text]]
+
+    --model_type                 Choose the model you want to train from LSTM, Dense_NN, SVM, RF, and SGD
+    --text                       The text you want to classify
