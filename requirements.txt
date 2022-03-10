@@ -7,3 +7,4 @@ textblob
 scikit-learn
 tensorflow-cpu
 pickleshare
+gunicorn
