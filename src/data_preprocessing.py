@@ -119,7 +119,7 @@ def inference_cleaning(text):
 
 
 if __name__ == '__main__':
-    tweets_data_path = "tweets_dataset.csv"
+    tweets_data_path = "data/tweets_dataset.csv"
     df = pd.read_csv(tweets_data_path, encoding='utf-8')
     print(df.info())
     processed_dataFrame = text_preprocessing(df, 'tweets')

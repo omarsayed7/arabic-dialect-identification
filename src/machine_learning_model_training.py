@@ -61,7 +61,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Reading the tweets
-    tweets_data_path = "preprocessed_tweets.csv"
+    tweets_data_path = "data/preprocessed_tweets.csv"
     df = pd.read_csv(tweets_data_path)
     print(df.info())
 

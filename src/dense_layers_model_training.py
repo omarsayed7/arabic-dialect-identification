@@ -1,4 +1,5 @@
 import nltk
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -6,8 +7,10 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers, callbacks
 from nltk import word_tokenize
 import pickle
+from sklearn.metrics import classification_report
 
-tweets_data_path = "preprocessed_tweets.csv"
+
+tweets_data_path = "data/preprocessed_tweets.csv"
 df = pd.read_csv(tweets_data_path)
 print(df.info())
 
@@ -56,9 +59,17 @@ history = model.fit(x_train,
                     validation_data=(x_val, y_val),
                     callbacks=[callback])
 
+print("[INFO] Calculating the classification report")
+y_pred = model.predict(x_test, batch_size=512, verbose=1)
+y_pred_bool = np.argmax(y_pred, axis=1)
+y_test = np.argmax(y_test, axis=1)
+print(
+    f"Classification Report : \n\n{classification_report(y_test, y_pred_bool)}")
+
 # saving deep learning model
 model.save('models/dense_model.h5')
 
 # saving tokenizer
 with open('models/tokenizer.pickle', 'wb') as handle:
     pickle.dump(vectorizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+print("[INFO] Model saved")

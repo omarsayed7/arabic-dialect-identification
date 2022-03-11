@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm
 
 URL = "https://recruitment.aimtechnologies.co/ai-tasks"
-tweets_ids_csv = "dialect_dataset.csv"
+tweets_ids_csv = "data/dialect_dataset.csv"
 tweets_ids = pd.read_csv(tweets_ids_csv)
 
 
@@ -35,4 +35,4 @@ fetched_tweets = tweets_ids.copy()
 # append the tweets column in final_df dataframe
 fetched_tweets['tweets'] = returned_tweets
 # save the final_df to csv file
-fetched_tweets.to_csv("tweets_dataset.csv")
+fetched_tweets.to_csv("data/tweets_dataset.csv")
