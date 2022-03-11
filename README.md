@@ -24,7 +24,7 @@ Many countries speak Arabic; however, each country has its own dialect, the aim 
 
     python machine_learning_model_training.py [-m [model_type]]
 
-    --model_type                 Choose the model you want to train from SVM, RF, and SGD
+    --model_type                 Choose the model you want to train from Multinomial NB, RF, and SGD
 
 ##### Simple neural network(Dense layers) model training
 
