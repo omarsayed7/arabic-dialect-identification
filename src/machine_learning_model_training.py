@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
-from sklearn.svm import SVC
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report
 import nltk
 import pickle
@@ -41,10 +41,11 @@ def model_training(model_type, X_train, y_train):
         model.fit(X_train, y_train)
         return model
 
-    if model_type == 'SVM':
-        print("[INFO] Starting training with Support Vector Machines Classifier")
-        model = Pipeline([('tfidf', TfidfVectorizer(max_features=500)),
-                          ('svm', SVC(verbose=2))])
+    if model_type == 'MNb':
+        print(
+            "[INFO] Starting training with Naive Bayes classifier for multinomial models")
+        model = Pipeline([('tfidf', TfidfVectorizer()),
+                          ('svm', MultinomialNB())])
         model.fit(X_train, y_train)
         return model
     else:
@@ -56,7 +57,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Configuration of setup and training process")
     parser.add_argument('-m', '--model', type=str,
-                        help='Choose the model you want to train from SVM, RF, and SGD')
+                        help='Choose the model you want to train from Multinomial NB, RF, and SGD')
     args = parser.parse_args()
 
     # Reading the tweets
