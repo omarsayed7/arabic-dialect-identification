@@ -56,7 +56,7 @@ def select_model(model, text):
             text, 'src/models/tokenizer.pickle', "src/models/dense_model.h5")
     if model == 'LSTM':
         pred_class = lstm_inference(
-            text, 'models/lstm_tokenizer.pickle', "models/lstm_best_model.h5")
+            text, 'src/models/lstm_tokenizer.pickle', "src/models/lstm_best_model.h5")
     if model == 'SGD':
         pred_class = classif_ml_inference(
             text, "src/models/SGD_model.pkl")
