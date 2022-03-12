@@ -1,7 +1,5 @@
 Flask==1.1.0
 Flask-Cors==3.0.10
-flask-ngrok==0.0.25
-flask-restplus==0.13.0
 tqdm
 numpy
 pandas
