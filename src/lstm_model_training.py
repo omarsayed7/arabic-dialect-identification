@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 import pandas as pd
 from tensorflow.keras import models
@@ -11,7 +12,7 @@ from sklearn.metrics import classification_report
 
 # Training and tokenization configuration
 vocab_size = 15000
-max_length = 250
+max_length = 300
 epochs = 1
 output_dim = 100
 batch_size = 64
@@ -63,6 +64,9 @@ checkpoint = ModelCheckpoint("models/lstm_best_model.h5", monitor='loss',
 history = model.fit(X_train_tok, y_train, epochs=epochs, batch_size=batch_size,
                     validation_data=(X_val_tok, y_val), callbacks=[checkpoint])
 
+# saving the tokenizer
+with open('models/lstm_tokenizer.pickle', 'wb') as handle:
+    pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 # saving deep learning model
 model.save('models/lstm_best_model.h5')
 print("[INFO] Model saved")

@@ -3,6 +3,7 @@ import argparse
 import numpy as np
 from tensorflow.keras import models
 from sklearn.feature_extraction.text import TfidfVectorizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from src.data_preprocessing import text_cleaning
 
 CLASS_DICT = {0: "AE", 1: "BH", 2: "DZ", 3: "EG", 4: "IQ", 5: "JO", 6: "KW", 7: "LB", 8: "LY", 9: "MA",
@@ -23,6 +24,22 @@ def dense_nn_inference(text, tokenized_path, model_path):
     return CLASS_DICT[np.argmax(prediction_load)]
 
 
+def lstm_inference(text, tokenized_path, model_path):
+    '''
+    Individual testing of the LSTM Network model given a text.
+    '''
+    # loading tokenizer
+    with open(tokenized_path, 'rb') as handle:
+        tokenizer = pickle.load(handle)
+    # loading lstm model
+    loaded_model = models.load_model(model_path)
+    seq = tokenizer.texts_to_sequences([text_cleaning(text)])
+    padded = pad_sequences(seq, maxlen=300)
+    prediction_load = loaded_model.predict(padded)
+
+    return CLASS_DICT[np.argmax(prediction_load)]
+
+
 def classif_ml_inference(text, model_path):
     '''
     Individual testing of the classical ML algorithms (Multinomial NB, RF, SGD) model given a text.
@@ -37,6 +54,9 @@ def select_model(model, text):
     if model == 'Dense_NN':
         pred_class = dense_nn_inference(
             text, 'src/models/tokenizer.pickle', "src/models/dense_model.h5")
+    if model == 'LSTM':
+        pred_class = lstm_inference(
+            text, 'models/lstm_tokenizer.pickle', "models/lstm_best_model.h5")
     if model == 'SGD':
         pred_class = classif_ml_inference(
             text, "src/models/SGD_model.pkl")
