@@ -1,7 +1,7 @@
 # Arabic Dialect Identification
 
 <p align="center">
-  <img src="imgs/home.PNG" width="960" title="home_page">
+  <img src="imgs/home.png" width="960" title="home_page">
 </p>
 
 ###### Demo: https://arabic-dialect-identification.herokuapp.com/
