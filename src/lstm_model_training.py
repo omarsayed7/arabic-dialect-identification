@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report
 
 # Training and tokenization configuration
 vocab_size = 15000
-max_length = 300
+max_length = 250
 epochs = 1
 output_dim = 100
 batch_size = 64

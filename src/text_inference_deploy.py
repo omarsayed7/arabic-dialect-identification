@@ -34,7 +34,7 @@ def lstm_inference(text, tokenized_path, model_path):
     # loading lstm model
     loaded_model = models.load_model(model_path)
     seq = tokenizer.texts_to_sequences([text_cleaning(text)])
-    padded = pad_sequences(seq, maxlen=300)
+    padded = pad_sequences(seq, maxlen=250)
     prediction_load = loaded_model.predict(padded)
 
     return CLASS_DICT[np.argmax(prediction_load)]
