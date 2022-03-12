@@ -79,7 +79,7 @@ Training two deep neural networks architecture
 ## Results
 
 <p align="center">
-  <img src="imgs/results.PNG" width="960" title="home_page">
+  <img src="imgs/results.png" width="960" title="result_page">
 </p>
 
 ## Conclusion
