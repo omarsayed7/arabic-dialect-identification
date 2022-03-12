@@ -84,6 +84,6 @@ Training two deep neural networks architecture
 
 ## Conclusion
 
-- The data set was fairly large, which made made it quite interesting.
-- The dataset suffer from class imbalance, and the text needed plenty of cleaning.
+- The data set was fairly large, which made it quite interesting.
+- The dataset suffers from class imbalance, and the text needed plenty of cleaning.
 - Getting 50% accuracy using linear classifier(SVM) with SGD learning was quite good compared to the result reported by [A. Abdelali, H. Mubarak, 2020](https://drive.google.com/file/d/1nqftY_XpBVdbu9qU7kEU4vEtmRxlian1/view?usp=sharing).
