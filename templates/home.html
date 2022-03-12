@@ -2,7 +2,7 @@
 <html>
 <body>
 <h1>Arabic Dialect Identification</h1>
-<form action="/api/classification_model" method="post">
+<form action="/predict" method="post">
   <label for="fname">Enter the text - ادخل الجملة</label><br>
   <input type="text" id="InputText" name="InputText" value="ادخل الجملة"><br>
   <select name="Algorithm" id="Algorithm">
@@ -12,7 +12,7 @@
     <option value="SGD">Linear Classifier SGD</option>
     <option value="MNb">Multinomial Naive Bayes</option>
   </select>
-  <input type="submit" value="Submit">
+  <input type="submit" value="predict">
 </form> 
 <h6>Developed by: Omar Sayed Mahmoud - github.com/omarsayed7</h6>
 </body>
