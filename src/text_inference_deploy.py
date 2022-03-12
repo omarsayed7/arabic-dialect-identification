@@ -2,7 +2,8 @@ import pickle
 import argparse
 import numpy as np
 from tensorflow.keras import models
-from data_preprocessing import text_cleaning
+from sklearn.feature_extraction.text import TfidfVectorizer
+from src.data_preprocessing import text_cleaning
 
 CLASS_DICT = {0: "AE", 1: "BH", 2: "DZ", 3: "EG", 4: "IQ", 5: "JO", 6: "KW", 7: "LB", 8: "LY", 9: "MA",
               10: "OM", 11: "PL", 12: "QA", 13: "SA", 14: "SD", 15: "SY", 16: "TN", 17: "YE"}
@@ -33,34 +34,16 @@ def classif_ml_inference(text, model_path):
 
 
 def select_model(model, text):
-    '''
-    Selecting the model you want to inference with
-    '''
     if model == 'Dense_NN':
-        print("[INFO] Inferencing with Dense Network")
         pred_class = dense_nn_inference(
-            text, 'models/tokenizer.pickle', "models/dense_model.h5")
+            text, 'src/models/tokenizer.pickle', "src/models/dense_model.h5")
     if model == 'SGD':
-        print("[INFO] Inferencing with Linear model with SGD learning")
         pred_class = classif_ml_inference(
-            text, "models/SGD_model.pkl")
+            text, "src/models/SGD_model.pkl")
     if model == 'MNb':
-        print("[INFO] Inferencing with Multinomial Naive bayes")
         pred_class = classif_ml_inference(
-            text, "models/MNb_model.pkl")
+            text, "src/models/MNb_model.pkl")
     if model == 'RF':
-        print("[INFO] Inferencing with Random Forest")
         pred_class = classif_ml_inference(
-            text, "models/RF_model.pkl")
+            text, "src/models/RF_model.pkl")
     return pred_class
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description="Configuration of inference process")
-    parser.add_argument('-m', '--model', type=str,
-                        help='Choose the model you want to inference with from Dense_NN, MNb, RF, and SGD')
-    parser.add_argument('-t', '--text', type=str,
-                        help='The text you want to classify')
-    args = parser.parse_args()
-    print(select_model(args.model, args.text))

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Arabic Dialect Identification</h1>
+<form action="/api/classification_model" method="post">
+  <label for="fname">Enter the text - ادخل الجملة</label><br>
+  <input type="text" id="InputText" name="InputText" value="ادخل الجملة"><br>
+  <select name="Algorithm" id="Algorithm">
+    <option value="lstm">LSTM</option>
+    <option value="Dense_NN">MLP</option>
+    <option value="RF">Random Forest</option>
+    <option value="SGD">Linear Classifier SGD</option>
+    <option value="MNb">Multinomial Naive Bayes</option>
+  </select>
+  <input type="submit" value="Submit">
+</form> 
+<h6>Developed by: Omar Sayed Mahmoud - github.com/omarsayed7</h6>
+</body>
+</html>
+

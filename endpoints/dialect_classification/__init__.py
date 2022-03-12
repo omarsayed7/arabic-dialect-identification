@@ -1,12 +1,10 @@
-from http.client import HTTPResponse
-from socket import socket
-from flask import request, Response, send_file, jsonify
+from flask import request
 from flask_restplus import Namespace, Resource, fields
 from http import HTTPStatus
-from numpy import require
-from src.text_inference import dense_nn_inference, classif_ml_inference
+from flask import Flask, render_template, make_response
+from src.text_inference_deploy import select_model
 
-namespace = Namespace('classification-model', 'Classification APIs')
+namespace = Namespace('classification_model', 'Classification APIs')
 
 classification_model = namespace.model('TextModel', {
     'InputText': fields.String(
@@ -22,22 +20,14 @@ classification_model = namespace.model('TextModel', {
 
 @namespace.route('')
 class Classification(Resource):
-    @namespace.response(500, 'Internal Server error')
     @namespace.expect(classification_model)
     @namespace.marshal_with(classification_model, code=HTTPStatus.CREATED)
     def post(self):
         '''Post method for arabic dialect classification'''
-        data = request.json
+        data = request.form
         input_text = data['InputText']
         algorithm = data['Algorithm']
-        if algorithm == 'Dense_NN':
-            pred_class = dense_nn_inference(
-                input_text, 'src/models/tokenizer.pickle', "src/models/dense_model.h5")
-        if algorithm == 'SGD':
-            pred_class = classif_ml_inference(
-                input_text, "src/models/SGD_model.pkl")
-        if algorithm == 'RF':
-            pred_class = classif_ml_inference(
-                input_text, "src/models/RF_model.pkl")
+        pred_class = select_model(algorithm, input_text)
         print(pred_class)
-        return jsonify({'Class': pred_class})
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template('result.html', result=pred_class), 200, headers)
