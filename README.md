@@ -30,7 +30,7 @@ Training two deep neural networks architecture
 - [Multinomial NB](https://drive.google.com/file/d/1--8XMNgnHROt8Yo2LkYwyHomxUyE3CgX/view?usp=sharing)
 - [MLP](https://drive.google.com/file/d/12SU4HqGCuob_A0lHsBTCn0sMtuhAVKHv/view?usp=sharing)
 - [LSTM](https://drive.google.com/file/d/1fiorMT0FtHHKIwGdkLAVOC6s4qUERDer/view?usp=sharing)
-- [LSTM Tokenizer]()
+- [LSTM Tokenizer](https://drive.google.com/file/d/1l6K7NmkDXej5hw3CGeBFL0BHBA5AIzw9/view?usp=sharing)
 - [MLP Tokenizer](https://drive.google.com/file/d/1--Fg2xwaIv1R9u5e4uR2vuKjk6ARpLOj/view?usp=sharing)
 
 ## Usage
