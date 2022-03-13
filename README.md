@@ -98,3 +98,4 @@ Before you get your hands dirty with the code, the flow of the project is, first
 - Getting 50% accuracy using linear classifier(SVM) with SGD learning was quite good as we trained on the 18 class.
 - Training one epoch of LSTM model take +2.5 hours because of not accessing to gpu power, however after 5 epochs the model reaches to 56% accuracy on the test set, if the model continue training and using early stopping criteria definitely the model will reach to better accuracy.
 - LSTM model outperforms to the rest of the models even if it isn’t trained enough on the dataset.
+- Techniques for increasing the accuracy are using pre-trained embedding models such as word2vec trained on arabic data and using state of the art pre-training BERT for arabic language understanding.
