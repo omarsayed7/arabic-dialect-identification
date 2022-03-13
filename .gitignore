@@ -1,3 +1,6 @@
 src/data/preprocessed_tweets.csv
 src/data/tweets_dataset.csv
-src/models
+src/models/Rf_model.pkl
+src/models/MNb_model.pkl
+src/models/tokenizer.pickle
+src/models/dense_model.h5
