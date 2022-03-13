@@ -1,5 +1,8 @@
 # Arabic Dialect Identification
 
+Application for detecting and identifying the arabic dialects using machine learning and NLP.
+
+
 <p align="center">
   <img src="imgs/home.png" width="960" title="home_page">
 </p>
@@ -8,7 +11,7 @@
 
 ## Introduction
 
-The nature of the Arabic language being a macro, morphological language with many varieties makes it one of the challenging languages for natural language processing and language identification. Machine learning and NLP build effective arabic dialect identification prediction model trained on 450k tweets across 18 classes.
+The nature of the Arabic language being a macro, morphological language with many varieties makes it one of the challenging languages for natural language processing and language identification. Machine learning and NLP build effective arabic dialect identification prediction model trained on 450k tweets across 18 classes(Arabic countries).
 
 Training three classical machine learning models
 
